@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Calculator</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #2c2c2c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .calculator {
+      background: #3f4141;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+      width: 100%;
+      max-width: 320px;
+    }
+    .calculator input[type="text"] {
+      height: 80px;
+      font-size: 1.6rem;
+      text-align: right;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: none;
+      padding: 10px;
+    }
+    .btn-custom {
+      width: 60px;
+      height: 55px;
+      font-size: 1.2rem;
+      margin: 5px;
+      border-radius: 12px;
+    }
+    .btn-wide {
+      width: 200px;
+    }
+    @media (max-width: 400px) {
+      .btn-custom {
+        width: 8px;
+        height: 50px;
+        font-size: 1rem;
+      }
+      .btn-wide {
+        width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" class="form-control" readonly>
+
+    <!-- Row 1 -->
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-info btn-custom" onclick="cleardisplay()">C</button>
+      <button class="btn btn-info btn-custom" onclick="adddisplay('.')">.</button>
+      <button class="btn btn-info btn-custom" onclick="adddisplay('/')">/</button>
+      <button class="btn btn-info btn-custom" onclick="adddisplay('*')">*</button>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-light btn-custom" onclick="adddisplay('7')">7</button>
+      <button class="btn btn-light btn-custom" onclick="adddisplay('8')">8</button>
+      <button class="btn btn-light btn-custom" onclick="adddisplay('9')">9</button>
+      <button class="btn btn-info btn-custom" onclick="adddisplay('-')">-</button>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-light btn-custom" onclick="adddisplay('4')">4</button>
+      <button class="btn btn-light btn-custom" onclick="adddisplay('5')">5</button>
+      <button class="btn btn-light btn-custom" onclick="adddisplay('6')">6</button>
+      <button class="btn btn-info btn-custom" onclick="adddisplay('+')">+</button>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-light btn-custom" onclick="adddisplay('1')">1</button>
+      <button class="btn btn-light btn-custom" onclick="adddisplay('2')">2</button>
+      <button class="btn btn-light btn-custom" onclick="adddisplay('3')">3</button>
+      <button class="btn btn-success btn-custom" onclick="calcu()">=</button>
+    </div>
+
+    <!-- Row 5 -->
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-light btn-custom btn-wide" onclick="adddisplay('0')">0</button>
+      <button class="btn btn-light btn-custom" onclick="adddisplay('%')">%</button>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById('display');
+
+    function adddisplay(value) {
+      display.value += value;
+    }
+
+    function cleardisplay() {
+      display.value = '';
+    }
+
+    function calcu() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
